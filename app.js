@@ -6,6 +6,7 @@ const morgan = require("morgan");
 const app = express();
 const mongoose = require("mongoose");
 const schema = require("./schema/schema");
+const cors = require("cors");
 
 mongoose
   .connect(process.env.DB_URI, {
@@ -20,6 +21,8 @@ mongoose
   });
 
 app.use(morgan("tiny"));
+
+app.use(cors());
 
 app.use(
   "/graphql",
