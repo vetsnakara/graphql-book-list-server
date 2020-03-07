@@ -7,9 +7,11 @@ const schema = require("./schema/schema");
 
 app.use(morgan("tiny"));
 
-app.use("/graphql", (req, res) =>
+app.use(
+  "/graphql",
   graphqlHTTP({
-    schema
+    schema,
+    graphiql: true
   })
 );
 
