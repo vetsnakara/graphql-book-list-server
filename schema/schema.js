@@ -4,9 +4,9 @@ const _ = require("lodash");
 const { GraphQLObjectType, GraphQLString, GraphQLSchema, GraphQLID } = graphql;
 
 const books = [
-  { name: "Name of the Wind", genre: "Fantasy", id: "1" },
-  { name: "The Final Empire", genre: "Fantasy", id: "2" },
-  { name: "The Long Earth", genre: "Sci-Fi", id: "3" }
+  { name: "Name of the Wind", genre: "Fantasy", id: "1", authorId: "1" },
+  { name: "The Final Empire", genre: "Fantasy", id: "2", authorId: "2" },
+  { name: "The Long Earth", genre: "Sci-Fi", id: "3", authorId: "3" }
 ];
 
 const authors = [
@@ -27,6 +27,12 @@ const BookType = new GraphQLObjectType({
     },
     genre: {
       type: GraphQLString
+    },
+    author: {
+      type: AuthorType,
+      resolve(parent, args) {
+        return _.find(authors, { id: parent.authorId });
+      }
     }
   })
 });
@@ -58,7 +64,6 @@ const RootQuery = new GraphQLObjectType({
         }
       },
       resolve(parent, args) {
-        console.log(args);
         return _.find(books, { id: args.id });
       }
     },
