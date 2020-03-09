@@ -1,5 +1,8 @@
-const graphql = require("graphql");
 const _ = require("lodash");
+const graphql = require("graphql");
+
+const Book = require("./models/book");
+const Author = require("./models/author");
 
 const {
   GraphQLObjectType,
@@ -10,9 +13,6 @@ const {
   GraphQLList,
   GraphQLNonNull
 } = graphql;
-
-const Book = require("./server/models/book");
-const Author = require("./server/models/author");
 
 const BookType = new GraphQLObjectType({
   name: "Book",
