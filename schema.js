@@ -11,8 +11,8 @@ const {
   GraphQLNonNull
 } = graphql;
 
-const Book = require("../models/book");
-const Author = require("../models/author");
+const Book = require("./server/models/book");
+const Author = require("./server/models/author");
 
 const BookType = new GraphQLObjectType({
   name: "Book",
@@ -128,13 +128,13 @@ const Mutation = new GraphQLObjectType({
       type: BookType,
       args: {
         name: {
-          type: new GraphQLNonNull( GraphQLString)
+          type: new GraphQLNonNull(GraphQLString)
         },
         genre: {
-          type: new GraphQLNonNull( GraphQLString)
+          type: new GraphQLNonNull(GraphQLString)
         },
         authorId: {
-          type: new GraphQLNonNull( GraphQLID)
+          type: new GraphQLNonNull(GraphQLID)
         }
       },
       resolve(parent, args) {

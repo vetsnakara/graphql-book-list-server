@@ -1,12 +1,14 @@
 require("dotenv").config();
 
 const express = require("express");
-const graphqlHTTP = require("express-graphql");
-const morgan = require("morgan");
-const app = express();
 const mongoose = require("mongoose");
-const schema = require("./schema/schema");
+const morgan = require("morgan");
 const cors = require("cors");
+const graphqlHTTP = require("express-graphql");
+
+const schema = require("./schema");
+
+const app = express();
 
 mongoose
   .connect(process.env.DB_URI, {
@@ -21,7 +23,6 @@ mongoose
   });
 
 app.use(morgan("tiny"));
-
 app.use(cors());
 
 app.use(
